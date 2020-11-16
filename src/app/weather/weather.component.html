@@ -1,0 +1,315 @@
+<div class="form-header">
+	<div class="container">
+		<div class="row">
+			<mat-card class="col-lg-6 col-md-8 col-xs-10 col-md-offset-2 col-lg-offset-3 col-xs-offset-1">
+				<form class="searchbar" (submit)="onFindCity(input.value)" novalidate>
+					<mat-form-field>
+						<input matInput (input)="onSearchChange($event.target.value)" [(ngModel)]="city" type="search" name="city" id="city" placeholder="Ex: New York" matTooltip="Enter a city" spellcheck="false" #input [matAutocomplete]="auto">
+						<mat-autocomplete #auto="matAutocomplete">
+							<mat-option (onSelectionChange)="onSelection(option.name)" *ngFor="let option of typings" [value]="option.name">
+							  {{ option.name }}, <small>Latitude: {{ option.lat }}, Longitude: {{ option.lon }}</small>
+							</mat-option>
+						</mat-autocomplete>
+					</mat-form-field>
+					<button class="submit-button" mat-button matSuffix mat-icon-button aria-label="Clear" type="submit" matTooltip="Search">
+				    	<mat-icon>search</mat-icon>
+					</button>
+				</form>
+				<mat-progress-bar *ngIf="spinner" mode="indeterminate"></mat-progress-bar>
+			</mat-card>
+		</div>
+	</div>
+</div>
+<div *ngIf="weather" class="fade">
+<div class="container txcenter">
+	<div class="weather">
+		<div class="weather-haeder">
+			<h1 matTooltip="Location" class="location">
+				{{ weather.location.name }}, {{ weather.location.country }}
+			</h1>
+			<div class="temperature">
+				<span matTooltip="Current temperature">
+					{{ tempConverter(weather.current.temp_f) }}&deg;
+				</span>
+				<small>
+					<span matTooltip="Current units of temperature is Farenhite" *ngIf="!toCel">F</span>
+					<span matTooltip="Current units of temperature is Celcius" *ngIf="toCel">C</span>
+					/
+					<button matTooltip="Convert temperature to Farenhite" *ngIf="toCel" (click)="convertTemp()" mat-button mat-icon-button>F</button>
+					<button matTooltip="Convert temperature to Celcius" *ngIf="!toCel" (click)="convertTemp()" mat-button mat-icon-button>C</button>
+				</small>
+			</div>
+			<div class="cloudiness">
+				<p class="txcenter">
+					<img src="http:{{weather.current.condition.icon}}" alt="">
+				</p>
+				<h2 class="cloudiness" matTooltip="Cloudiness">{{ weather.current.condition.text }}</h2>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="flx-body">
+			<mat-card class="txcenter sun">
+				<h3>Sunrise</h3>
+				<h2 matTooltip="Sunrise">{{ weather.forecast.forecastday["0"].astro.sunrise }}</h2>
+				<img src="assets/img/sunrise.png" alt="">
+				<h3>Moonrise</h3>
+				<h2 matTooltip="Moonrise">{{ weather.forecast.forecastday["0"].astro.moonrise }}</h2>
+			</mat-card>
+			<mat-card class="about">
+				<mat-list role="list">
+					<mat-list-item role="listitem">
+						<span>Feels like:&nbsp;</span>
+						<span matTooltip="Current temperature" class="listiteminfo">
+							{{ tempConverter(weather.current.temp_f) }}&deg;
+						</span>
+					</mat-list-item>
+					<mat-list-item role="listitem">
+						<span>Humidity:&nbsp;</span>
+						<span class="listiteminfo">
+							{{ weather.current.humidity }}%
+						</span>
+					</mat-list-item>
+					<mat-list-item role="listitem">
+						<span>Visibility:&nbsp;</span>
+						<span class="listiteminfo">
+							{{ weather.current.vis_km }} km
+						</span>
+					</mat-list-item>
+					<mat-list-item role="listitem">
+						<span>Pressure:&nbsp;</span>
+						<span class="listiteminfo">
+							{{ weather.current.pressure_in }} in
+						</span>
+					</mat-list-item>
+					<mat-list-item role="listitem">
+						<span>Wind Speed:&nbsp;</span>
+						<span class="listiteminfo">
+							{{ weather.current.wind_kph }} KM/H
+						</span>
+					</mat-list-item>
+					<mat-list-item role="listitem">
+						<span>Wind Direction:&nbsp;</span>
+						<span class="listiteminfo">
+							{{ weather.current.wind_degree }}&deg;
+						</span>
+					</mat-list-item>
+					<mat-list-item role="listitem">
+						<span>Latitude:&nbsp;</span>
+						<span class="listiteminfo">
+							{{ weather.location.lat }}
+						</span>
+					</mat-list-item>
+					<mat-list-item role="listitem">
+						<span>Longitude:&nbsp;</span>
+						<span class="listiteminfo">
+							{{ weather.location.lon }}
+						</span>
+					</mat-list-item>
+				</mat-list>
+			</mat-card>
+			<mat-card class="txcenter sun">
+				<h3>Sunset</h3>
+				<h2 matTooltip="Sunset">{{ weather.forecast.forecastday["0"].astro.sunset }}</h2>
+				<img src="assets/img/sunset.png" alt="">
+				<h3>Moonset</h3>
+				<h2 matTooltip="Moonset">{{ weather.forecast.forecastday["0"].astro.moonset }}</h2>
+			</mat-card>
+	</div>
+</div>
+<hr>
+<div class="container">
+	<h2 class="txcenter">Weather Forecast</h2>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-9 col-sm-12 col-xs-12">
+
+
+
+			<mat-card class="forecast">
+				<span class="start-xs">
+					<img src='{{ weather.forecast.forecastday["0"].day.condition.icon }}' alt="" class="forecasts">
+					<h4>{{ weather.forecast.forecastday["0"].date }}</h4>
+					<small>Sunrise: {{ weather.forecast.forecastday["0"].astro.sunrise }}, Sunset: {{ weather.forecast.forecastday["0"].astro.sunset }}</small>
+				</span>
+				<span class="end-xs">
+					<h4>{{ weather.forecast.forecastday["0"].day.condition.text }}</h4>
+					<div>
+						<span matTooltip="Minimum tempareture">
+							{{ tempConverter(weather.forecast.forecastday["0"].day.mintemp_f) }}&deg;
+						</span>
+						<mat-icon>compare_arrows</mat-icon>
+						<span matTooltip="Average tempareture">{{ tempConverter(weather.forecast.forecastday["0"].day.avgtemp_f) }}&deg;</span>
+						<mat-icon>compare_arrows</mat-icon>
+						<span matTooltip="Maximum tempareture">
+							{{ tempConverter(weather.forecast.forecastday["0"].day.maxtemp_f) }}&deg;
+						</span>
+					</div>
+				</span>
+			</mat-card>
+			<hr>
+
+
+
+			<mat-card class="forecast">
+				<span class="start-xs">
+					<img src='{{ weather.forecast.forecastday["1"].day.condition.icon }}' alt="" class="forecasts">
+					<h4>{{ weather.forecast.forecastday["1"].date }}</h4>
+					<small>Sunrise: {{ weather.forecast.forecastday["1"].astro.sunrise }}, Sunset: {{ weather.forecast.forecastday["1"].astro.sunset }}</small>
+				</span>
+				<span class="end-xs">
+					<h4>{{ weather.forecast.forecastday["1"].day.condition.text }}</h4>
+					<div>
+						<span matTooltip="Minimum tempareture">
+							{{ tempConverter(weather.forecast.forecastday["1"].day.mintemp_f) }}&deg;
+						</span>
+						<mat-icon>compare_arrows</mat-icon>
+						<span matTooltip="Average tempareture">{{ tempConverter(weather.forecast.forecastday["1"].day.avgtemp_f) }}&deg;</span>
+						<mat-icon>compare_arrows</mat-icon>
+						<span matTooltip="Maximum tempareture">
+							{{ tempConverter(weather.forecast.forecastday["1"].day.maxtemp_f) }}&deg;
+						</span>
+					</div>
+				</span>
+			</mat-card>
+			<hr>
+
+
+
+			<mat-card class="forecast">
+				<span class="start-xs">
+					<img src='{{ weather.forecast.forecastday["2"].day.condition.icon }}' alt="" class="forecasts">
+					<h4>{{ weather.forecast.forecastday["2"].date }}</h4>
+					<small>Sunrise: {{ weather.forecast.forecastday["2"].astro.sunrise }}, Sunset: {{ weather.forecast.forecastday["2"].astro.sunset }}</small>
+				</span>
+				<span class="end-xs">
+					<h4>{{ weather.forecast.forecastday["2"].day.condition.text }}</h4>
+					<div>
+						<span matTooltip="Minimum tempareture">
+							{{ tempConverter(weather.forecast.forecastday["2"].day.mintemp_f) }}&deg;
+						</span>
+						<mat-icon>compare_arrows</mat-icon>
+						<span matTooltip="Average tempareture">{{ tempConverter(weather.forecast.forecastday["2"].day.avgtemp_f) }}&deg;</span>
+						<mat-icon>compare_arrows</mat-icon>
+						<span matTooltip="Maximum tempareture">
+							{{ tempConverter(weather.forecast.forecastday["2"].day.maxtemp_f) }}&deg;
+						</span>
+					</div>
+				</span>
+			</mat-card>
+			<hr>
+
+
+
+			<mat-card class="forecast">
+				<span class="start-xs">
+					<img src='{{ weather.forecast.forecastday["3"].day.condition.icon }}' alt="" class="forecasts">
+					<h4>{{ weather.forecast.forecastday["3"].date }}</h4>
+					<small>Sunrise: {{ weather.forecast.forecastday["3"].astro.sunrise }}, Sunset: {{ weather.forecast.forecastday["3"].astro.sunset }}</small>
+				</span>
+				<span class="end-xs">
+					<h4>{{ weather.forecast.forecastday["3"].day.condition.text }}</h4>
+					<div>
+						<span matTooltip="Minimum tempareture">
+							{{ tempConverter(weather.forecast.forecastday["3"].day.mintemp_f) }}&deg;
+						</span>
+						<mat-icon>compare_arrows</mat-icon>
+						<span matTooltip="Average tempareture">{{ tempConverter(weather.forecast.forecastday["3"].day.avgtemp_f) }}&deg;</span>
+						<mat-icon>compare_arrows</mat-icon>
+						<span matTooltip="Maximum tempareture">
+							{{ tempConverter(weather.forecast.forecastday["3"].day.maxtemp_f) }}&deg;
+						</span>
+					</div>
+				</span>
+			</mat-card>
+			<hr>
+
+
+
+			<mat-card class="forecast">
+				<span class="start-xs">
+					<img src='{{ weather.forecast.forecastday["4"].day.condition.icon }}' alt="" class="forecasts">
+					<h4>{{ weather.forecast.forecastday["4"].date }}</h4>
+					<small>Sunrise: {{ weather.forecast.forecastday["4"].astro.sunrise }}, Sunset: {{ weather.forecast.forecastday["4"].astro.sunset }}</small>
+				</span>
+				<span class="end-xs">
+					<h4>{{ weather.forecast.forecastday["4"].day.condition.text }}</h4>
+					<div>
+						<span matTooltip="Minimum tempareture">
+							{{ tempConverter(weather.forecast.forecastday["4"].day.mintemp_f) }}&deg;
+						</span>
+						<mat-icon>compare_arrows</mat-icon>
+						<span matTooltip="Average tempareture">{{ tempConverter(weather.forecast.forecastday["4"].day.avgtemp_f) }}&deg;</span>
+						<mat-icon>compare_arrows</mat-icon>
+						<span matTooltip="Maximum tempareture">
+							{{ tempConverter(weather.forecast.forecastday["4"].day.maxtemp_f) }}&deg;
+						</span>
+					</div>
+				</span>
+			</mat-card>
+			<hr>
+
+
+
+			<mat-card class="forecast">
+				<span class="start-xs">
+					<img src='{{ weather.forecast.forecastday["5"].day.condition.icon }}' alt="" class="forecasts">
+					<h4>{{ weather.forecast.forecastday["5"].date }}</h4>
+					<small>Sunrise: {{ weather.forecast.forecastday["5"].astro.sunrise }}, Sunset: {{ weather.forecast.forecastday["5"].astro.sunset }}</small>
+				</span>
+				<span class="end-xs">
+					<h4>{{ weather.forecast.forecastday["5"].day.condition.text }}</h4>
+					<div>
+						<span matTooltip="Minimum tempareture">
+							{{ tempConverter(weather.forecast.forecastday["5"].day.mintemp_f) }}&deg;
+						</span>
+						<mat-icon>compare_arrows</mat-icon>
+						<span matTooltip="Average tempareture">{{ tempConverter(weather.forecast.forecastday["5"].day.avgtemp_f) }}&deg;</span>
+						<mat-icon>compare_arrows</mat-icon>
+						<span matTooltip="Maximum tempareture">
+							{{ tempConverter(weather.forecast.forecastday["5"].day.maxtemp_f) }}&deg;
+						</span>
+					</div>
+				</span>
+			</mat-card>
+			<hr>
+
+
+
+			<mat-card class="forecast">
+				<span class="start-xs">
+					<img src='{{ weather.forecast.forecastday["6"].day.condition.icon }}' alt="" class="forecasts">
+					<h4>{{ weather.forecast.forecastday["6"].date }}</h4>
+					<small>Sunrise: {{ weather.forecast.forecastday["6"].astro.sunrise }}, Sunset: {{ weather.forecast.forecastday["6"].astro.sunset }}</small>
+				</span>
+				<span class="end-xs">
+					<h4>{{ weather.forecast.forecastday["6"].day.condition.text }}</h4>
+					<div>
+						<span matTooltip="Minimum tempareture">
+							{{ tempConverter(weather.forecast.forecastday["6"].day.mintemp_f) }}&deg;
+						</span>
+						<mat-icon>compare_arrows</mat-icon>
+						<span matTooltip="Average tempareture">{{ tempConverter(weather.forecast.forecastday["6"].day.avgtemp_f) }}&deg;</span>
+						<mat-icon>compare_arrows</mat-icon>
+						<span matTooltip="Maximum tempareture">
+							{{ tempConverter(weather.forecast.forecastday["6"].day.maxtemp_f) }}&deg;
+						</span>
+					</div>
+				</span>
+			</mat-card>
+		</div>
+	</div>
+</div>
+<hr>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<agm-map [latitude]="lat" [longitude]="lng">
+				<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+			</agm-map>
+		</div>
+	</div>
+</div>
+</div>

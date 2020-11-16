@@ -1,0 +1,181 @@
+form .mat-form-field {
+  width: 100%;
+}
+button.submit-button {
+  position: absolute;
+  right: 5px;
+  top: 20px;
+}
+.form-header {
+  background: #156b15;
+}
+.temperature {
+  font-size: 75px;
+  font-weight: 100;
+  margin: 0;
+}
+.temperature small {
+  font-size: 30px;
+}
+.temperature button {
+  background-color: #156b1599;
+}
+.start-xs,
+.end-xs {
+  display: inline-block;
+}
+.end-xs {
+  float: right;
+}
+.forecast h4 {
+  margin: 2px 0;
+}
+.forecast {
+  font-size: 12px;
+}
+.forecast .end-xs mat-icon {
+  vertical-align: middle;
+}
+.end-xs span {
+  font-weight: 400;
+}
+.minmax span mat-icon {
+  vertical-align: middle;
+}
+.minmax {
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+.mat-list .mat-list-item {
+  display: block;
+  height: 35px;
+}
+.mat-list .mat-list-item {
+  font-size: 13px;
+}
+.sun img {
+  width: 30%;
+  max-width: 75px;
+}
+.sun h3 {
+  font-size: 18px;
+  margin-bottom: 0;
+}
+.sun h2 {
+  font-size: 20px;
+  margin-top: 0;
+}
+mat-list-item {
+  text-align: left;
+  font-weight: 500;
+}
+.listiteminfo {
+  font-weight: 400;
+}
+.location {
+  font-size: 15px;
+}
+.cloudiness {
+  font-size: 25px;
+}
+.cloudiness img {
+  width: 100px;
+  margin: -15px auto;
+}
+img.forecasts {
+  vertical-align: middle;
+  height: 70px;
+  width: auto;
+  float: left;
+  margin-right: 10px;
+}
+.flx-body {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.flx-body mat-card {
+  width: 100%;
+  max-width: 300px;
+  margin: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+  .location {
+    font-size: 20px;
+  }
+  .sun h3 {
+    font-size: 20px;
+    margin: 15px auto;
+  }
+  .sun h2 {
+    font-size: 25px;
+    margin: 20px auto;
+  }
+  .forecast {
+    font-size: 15px;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .location {
+    font-size: 26px;
+  }
+  .temperature {
+    font-size: 90px;
+  }
+  .minmax {
+    font-size: 26px;
+  }
+  .cloudiness {
+    font-size: 32px;
+  }
+  .sun h3 {
+    font-size: 20px;
+    margin: 15px auto;
+  }
+  .sun h2 {
+    font-size: 25px;
+    margin: 20px auto;
+  }
+  .mat-list .mat-list-item {
+    font-size: 15px;
+  }
+  .forecast {
+    font-size: 15px;
+  }
+  .forecast h4 {
+    margin: 5px 0;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .location {
+    font-size: 26px;
+  }
+  .temperature {
+    font-size: 90px;
+  }
+  .minmax {
+    font-size: 26px;
+  }
+  .cloudiness {
+    font-size: 32px;
+  }
+  .sun h3 {
+    font-size: 20px;
+    margin: 15px auto;
+  }
+  .sun h2 {
+    font-size: 25px;
+    margin: 20px auto;
+  }
+  .mat-list .mat-list-item {
+    font-size: 15px;
+  }
+  .forecast {
+    font-size: 15px;
+  }
+  .forecast h4 {
+    margin: 5px 0;
+  }
+}

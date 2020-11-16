@@ -1,0 +1,39 @@
+.four0four h3,.four0four h2 {font-weight: 300}
+.four0four h3 {}
+.four0four h2 {}
+.text-404 {
+	font-size: 100px;
+	font-weight: 100;
+	margin: 25px auto;
+	color: brown;
+}
+.btn-weather, .btn-weather:hover, .btn-weather:link, .btn-weather:visited {
+	background-color: #228b22;
+	color: #fff;
+	border-radius: 5px;
+	font-size: 15px;
+	padding: 15px 0;
+	text-decoration: none;
+	margin: 100px auto;
+	display: block;
+}
+
+
+@media only screen and (min-width: 768px) {
+	.text-404 {font-size: 150px;}
+	.four0four h2 {font-size: 35px;}
+	.four0four h3 {font-size: 20px;}
+	.btn-weather, .btn-weather:hover, .btn-weather:link, .btn-weather:visited {font-size: 20px;padding: 20px 0;}
+}
+@media only screen and (min-width: 992px) {
+	.text-404 {font-size: 150px;}
+	.four0four h2 {font-size: 35px;}
+	.four0four h3 {font-size: 20px;}
+	.btn-weather, .btn-weather:hover, .btn-weather:link, .btn-weather:visited {font-size: 20px;padding: 20px 0;}
+}
+@media only screen and (min-width: 1200px) {
+	.text-404 {font-size: 150px;}
+	.four0four h2 {font-size: 35px;}
+	.four0four h3 {font-size: 20px;}
+	.btn-weather, .btn-weather:hover, .btn-weather:link, .btn-weather:visited {font-size: 20px;padding: 20px 0;}
+}

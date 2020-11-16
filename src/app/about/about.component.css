@@ -1,0 +1,64 @@
+.webtitle h1 {
+	color: #156b15;
+	font-family: 'Marck Script', cursive;
+}
+.webtitle img {
+	height: 100px;
+	width: auto;
+}
+.about {
+	font-size: 14px;
+	color: #fff;
+	line-height: 1.6;
+	letter-spacing: 1px;
+	word-spacing: 2px;
+	margin: 90px auto;
+	font-weight: 300;
+}
+.about p {
+	text-shadow: 0 5px 5px #000;
+}
+.response {
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+.responsible {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+}
+.title {
+	font-size: 15px;
+	margin: 20px 0;
+	font-weight: 500;
+}
+.title h2 {
+	font-size: 25px;
+	margin: 20px 0;
+	color: #ffc600;
+	font-family: 'Marck Script', cursive;
+}
+
+
+
+@media only screen and (min-width: 768px) {
+	.about {font-size: 18px;line-height: 2;}
+}
+
+
+
+@media only screen and (min-width: 992px) {
+	.about {font-size: 18px;line-height: 2;}
+	.responsible {width: 250px;height: 250px;margin-top: 25px;}
+	.title {font-size: 18px;}
+	.title h2 {font-size: 35px;}
+}
+
+
+
+@media only screen and (min-width: 1200px) {
+	.about {font-size: 18px;line-height: 2.5;}
+	.responsible {width: 250px;height: 250px;margin-top: 25px;}
+	.title {font-size: 18px;}
+	.title h2 {font-size: 35px;}
+}

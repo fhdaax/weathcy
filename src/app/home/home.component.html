@@ -1,0 +1,119 @@
+<mat-toolbar color="primary" class="navbar">
+  <div class="container">
+    <span class="visible-xs">
+      <span class="menu end-xs">
+        <button mat-buttton mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="mat-menu">
+          <a
+            color="accent"
+            routerLinkActive="mactive"
+            [routerLinkActiveOptions]="{ exact: true }"
+            matTooltip="Weathcy Home"
+            mat-button
+            routerLink="/"
+          >
+            <mat-icon class="nav-icon">home</mat-icon>
+            Weathcy
+          </a>
+          <a
+            color="accent"
+            routerLinkActive="mactive"
+            matTooltip="About Weathcy"
+            mat-button
+            routerLink="/about"
+          >
+            <mat-icon class="nav-icon">turned_in</mat-icon>
+            About
+          </a>
+          <a
+            color="accent"
+            routerLinkActive="mactive"
+            matTooltip="Download Weathcy Mobile App"
+            mat-button
+            routerLink="/download"
+          >
+            <mat-icon class="nav-icon">get_app</mat-icon>
+            Download
+          </a>
+          <a
+            color="accent"
+            routerLinkActive="mactive"
+            matTooltip="Contact to Weathcy Forum"
+            mat-button
+            routerLink="/contact"
+          >
+            <mat-icon class="nav-icon">forum</mat-icon>
+            Contact
+          </a>
+        </mat-menu>
+      </span>
+      <span class="start-xs">Weathcy</span>
+    </span>
+    <span class="invisible-xs">
+      <a
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        matTooltip="Weathcy Home"
+        mat-button
+        routerLink="/"
+      >
+        <mat-icon class="nav-icon">home</mat-icon>
+        Weathcy
+      </a>
+      <a
+        routerLinkActive="active"
+        matTooltip="About Weathcy"
+        mat-button
+        routerLink="/about"
+      >
+        <mat-icon class="nav-icon">turned_in</mat-icon>
+        About
+      </a>
+      <a
+        routerLinkActive="active"
+        matTooltip="Download Weathcy Mobile App"
+        mat-button
+        routerLink="/download"
+      >
+        <mat-icon class="nav-icon">get_app</mat-icon>
+        Download
+      </a>
+      <a
+        routerLinkActive="active"
+        matTooltip="Contact to Weathcy Forum"
+        mat-button
+        routerLink="/contact"
+      >
+        <mat-icon class="nav-icon">forum</mat-icon>
+        Contact
+      </a>
+      <span
+        style="float: right"
+        matTooltip="The time in your machine"
+        *ngIf="currentTime"
+      >
+        <small>
+          {{ currentTime }}
+        </small>
+      </span>
+    </span>
+  </div>
+</mat-toolbar>
+
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>
+
+<div class="footer txcenter">
+  <div class="container">
+    <div class="col-xs-12">
+      &copy; {{ currentYear }}. All rights reserved by Weathcy
+    </div>
+    <div class="col-xs-6 col-xs-offset-3">
+      <hr />
+      <small>Powered by Weathcy cor.</small>
+    </div>
+  </div>
+</div>

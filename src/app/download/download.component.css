@@ -1,0 +1,95 @@
+.talkof {
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  list-style-type: none;
+  color: #3bff3b;
+  line-height: 2;
+}
+.scrn1 {
+  margin-bottom: 20px;
+}
+.scrn1,
+.scrn2 {
+  max-height: 480px;
+}
+.avail {
+  margin: 150px auto;
+}
+.avail h1 {
+  font-size: 25px;
+  margin: 0;
+  color: #3bff3b;
+  font-family: 'Marck Script', cursive;
+}
+.download a {
+  color: #fff;
+  margin: 50px auto;
+  padding: 15px 30px;
+  font-size: 15px;
+  display: block;
+  background-color: #156b15;
+  line-height: 1.6;
+  border-radius: 5px;
+}
+.alert {
+  font-size: 8px;
+}
+
+@media only screen and (min-width: 768px) {
+  .alert {
+    font-size: 15px;
+  }
+  .scrn1,
+  .scrn2 {
+    height: 400px !important;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .alert {
+    font-size: 15px;
+  }
+  .scrn1 {
+    margin-bottom: 0;
+    -webkit-transform: rotate(-20deg);
+    transform: rotate(-20deg);
+    z-index: 9;
+    height: 400px !important;
+  }
+  .scrn2 {
+    -webkit-transform: rotate(20deg);
+    transform: rotate(20deg);
+    margin: 0;
+    height: 400px !important;
+  }
+  .avail h1 {
+    font-size: 50px;
+  }
+  .download a {
+    font-size: 20px;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .alert {
+    font-size: 15px;
+  }
+  .scrn1 {
+    margin-bottom: 0;
+    -webkit-transform: rotate(-20deg);
+    transform: rotate(-20deg);
+    z-index: 9;
+    height: 480px !important;
+  }
+  .scrn2 {
+    -webkit-transform: rotate(20deg);
+    transform: rotate(20deg);
+    margin: 0;
+    height: 480px !important;
+  }
+  .avail h1 {
+    font-size: 50px;
+  }
+  .download a {
+    font-size: 20px;
+  }
+}
