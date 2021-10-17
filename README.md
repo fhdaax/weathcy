@@ -1,5 +1,12 @@
 # Weather4City
 
+Weather4City or **Weathcy** was a weaher forecasting `Angular` and `Ionic` application.
+
+<div>
+  <img alt="screen 1" src="https://user-images.githubusercontent.com/30201930/137616127-420c54ac-848c-483f-a02b-d26cf37bc31c.png" width="45%" />
+  <img alt="screen 2" src="https://user-images.githubusercontent.com/30201930/137616131-57d1baad-dc43-4799-ad4a-a712e17e9b3d.png" width="45%" />
+</div>
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.2.
 
 ## Development server
